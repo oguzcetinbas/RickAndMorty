@@ -92,14 +92,17 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
     implementation 'com.google.firebase:firebase-messaging:23.1.2'
 
+    //dagger-hilt
     implementation "com.google.dagger:hilt-android:2.44.2"
     kapt "com.google.dagger:hilt-compiler:2.44.2"
 
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
+    //Paging
     implementation "androidx.paging:paging-runtime-ktx:3.2.0-alpha01"
 
+    //Coil
     implementation("io.coil-kt:coil:1.1.1")
 
 }

@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
                     as NavHostFragment
 
         navController = navHostFragment.findNavController()
-        setupActionBarWithNavController(navController)
 
     }
 
