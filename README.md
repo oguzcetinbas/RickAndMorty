@@ -20,3 +20,12 @@ The Rick and Morty character search application is an Android mobile app that of
 </p>
 
 
+<h2 align="center">Getting Started 🚀</h2>
+
+To run this app, you'll need to have Android Studio installed. Follow these steps to get started:
+
+ - Clone this repository: git clone https://github.com/oguzcetinbas/RickAndMorty.git
+ - Open the project in Android Studio.
+ - Build and run the app.
+
+
