@@ -7,10 +7,11 @@ The Rick and Morty character search application is an Android mobile app that of
  
 </p>
 
-#  <h1 align="center">🖼 Preview </h1>
+#  <h1 align="center">🖼 Preview </h1>[Screenshot_20230702_235026 Küçük.pdf](https://github.com/oguzcetinbas/RickAndMorty/files/11931403/Screenshot_20230702_235026.Kucuk.pdf)
+
 
 <p align="center">
-<img src="![Screenshot_20230702_235026 Küçük](https://github.com/oguzcetinbas/RickAndMorty/assets/115632507/3233b0c1-a3ed-4cc6-a5b5-cd8a3c54766f)"/>
+<img src=""/>
 </p>
 
 
