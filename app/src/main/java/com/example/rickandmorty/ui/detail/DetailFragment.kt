@@ -9,23 +9,17 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentDetailBinding
+import com.example.rickandmorty.databinding.FragmentListBinding
+import com.example.rickandmorty.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
-    private lateinit var binding : FragmentDetailBinding
-    val args : DetailFragmentArgs by navArgs()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_detail, container, false)
-    }
+    private val binding by viewBinding(FragmentDetailBinding::bind)
+    private val args : DetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentDetailBinding.bind(view)
 
         binding.apply {
 

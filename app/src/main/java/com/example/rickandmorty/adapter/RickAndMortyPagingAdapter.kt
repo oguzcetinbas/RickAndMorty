@@ -16,14 +16,11 @@ class RickAndMortyPagingAdapter(private val listener : OnItemClickListener) : Pa
             override fun areItemsTheSame(oldItem: Details, newItem: Details): Boolean {
                 return oldItem.id == newItem.id
             }
-
             override fun areContentsTheSame(oldItem: Details, newItem: Details): Boolean {
                 return oldItem == newItem
             }
         }
     }
-
-
     inner class MyViewHolder(val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -64,7 +61,6 @@ class RickAndMortyPagingAdapter(private val listener : OnItemClickListener) : Pa
     }
 
     interface OnItemClickListener {
-
         fun onItemClickListerner(details: Details)
     }
 }

@@ -17,13 +17,13 @@ import com.example.rickandmorty.adapter.RickAndMortyPagingAdapter
 import com.example.rickandmorty.data.models.Details
 import com.example.rickandmorty.databinding.FragmentListBinding
 import com.example.rickandmorty.utils.getTextChipChecked
+import com.example.rickandmorty.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ListFragment : Fragment(R.layout.fragment_list),
-    RickAndMortyPagingAdapter.OnItemClickListener {
+class ListFragment : Fragment(R.layout.fragment_list), RickAndMortyPagingAdapter.OnItemClickListener {
 
-    private lateinit var binding: FragmentListBinding
+    private val binding by viewBinding(FragmentListBinding::bind)
     private lateinit var mAdapter: RickAndMortyPagingAdapter
     private val viewModel: ListViewModel by viewModels()
     private var filterButtonClicked: Boolean = false
@@ -52,19 +52,7 @@ class ListFragment : Fragment(R.layout.fragment_list),
             R.anim.to_bottom_anim
         )
     }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        filterButtonClicked = false
-
-        return inflater.inflate(R.layout.fragment_list, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentListBinding.bind(view)
 
         binding.floatingActionButton.setOnClickListener {
             filterButtonClicked()
@@ -78,11 +66,7 @@ class ListFragment : Fragment(R.layout.fragment_list),
                             ListFragmentDirections.actionListFragmentToDetailFragment(event.details)
                         findNavController().navigate(action)
                     }
-
-                    else -> {}
                 }
-
-
             }
         }
         mAdapter = RickAndMortyPagingAdapter(this)
@@ -111,50 +95,39 @@ class ListFragment : Fragment(R.layout.fragment_list),
                 }
                 return true
             }
-
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     binding.recyclerView.scrollToPosition(0)
                     viewModel.searchCharacters(newText)
                     filterButtonClicked = false
-
                 }
                 return true
             }
         })
-
         binding.statusChipsG.setOnCheckedStateChangeListener { group, checkedIds ->
-            //if we choose the chip that's not the "reset" one,
-            //the string we got from the extension code is
-            //going to be sent to viewModel for filtering
+            // Eğer reset olan çip yerine seçtiğimiz çipi seçersek,
+            // uzantı kodundan aldığımız dize filtreleme amacıyla viewModele gönderilecek.
             if (group.getTextChipChecked() != "Reset") {
                 viewModel.statusChoose(group.getTextChipChecked())
-                //this line of code makes the list scrolls
-                // to top after click to chip
+                // Bu kod satırı, çipe tıklandıktan sonra listenin en üstüne kaymasını sağlar.
                 binding.recyclerView.scrollToPosition(0)
-
             }
-            //If we choose "reset", we reset the status filter
-            // and see all the data
+            /// Eğer "reset" seçeneğini seçersek, durum filtresini sıfırlarız ve tüm verileri görüntüleriz.
             else if (group.getTextChipChecked() == "Reset") {
                 viewModel.statusChoose("")
                 binding.recyclerView.scrollToPosition(0)
             } else {
                 binding.recyclerView.scrollToPosition(0)
             }
-            //with that line float button going to close after we click to the any chip
+           // herhangi bir çipe tıkladıktan sonra kayan düğmenin kapanmasını sağlar.
             filterButtonClicked()
         }
     }
-
     fun filterButtonClicked() {
         setVisibility(filterButtonClicked)
         setAnimation(filterButtonClicked)
         filterButtonClicked = !filterButtonClicked
     }
-
-
     fun setVisibility(clicked: Boolean) {
         if (!clicked) {
             binding.chipAlive.visibility = View.VISIBLE
@@ -168,9 +141,7 @@ class ListFragment : Fragment(R.layout.fragment_list),
             binding.chipUnknown.visibility = View.GONE
             binding.chipClear.visibility = View.GONE
         }
-
     }
-
     fun setAnimation(clicked: Boolean) {
         if (!clicked) {
             binding.chipAlive.startAnimation(fromBottom)
@@ -186,11 +157,9 @@ class ListFragment : Fragment(R.layout.fragment_list),
             binding.floatingActionButton.startAnimation(rotateClose)
         }
     }
-
     override fun onItemClickListerner(details: Details) {
         viewModel.openCharactersDetail(details)
     }
-
 }
 
 

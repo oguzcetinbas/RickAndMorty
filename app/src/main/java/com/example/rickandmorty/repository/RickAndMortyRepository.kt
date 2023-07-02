@@ -7,14 +7,13 @@ import com.example.rickandmorty.data.remote.ApiService
 import com.example.rickandmorty.paging.RickAndMortyPagingSource
 import javax.inject.Inject
 
-class RickAndMortyRepository @Inject constructor(val apiService: ApiService) {
+class RickAndMortyRepository @Inject constructor(private val apiService: ApiService) {
 
-    fun getSearchResults(query : String, status : String) = Pager(
-        config = PagingConfig(
-            pageSize = 20,
-            maxSize = 100,
-            enablePlaceholders = false
-        ),
-        pagingSourceFactory = {RickAndMortyPagingSource(apiService,query,status)}
+    fun getSearchResults(query: String, status: String) = Pager(config = PagingConfig(
+        pageSize = 20,
+        maxSize = 100,
+        enablePlaceholders = false
+    ),
+        pagingSourceFactory = { RickAndMortyPagingSource(apiService, query, status) }
     ).liveData
 }

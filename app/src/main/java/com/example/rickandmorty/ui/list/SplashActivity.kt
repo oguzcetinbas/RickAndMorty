@@ -2,6 +2,7 @@ package com.example.rickandmorty.ui.list
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
@@ -17,11 +18,13 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private val SPLASH_DELAY: Long = 5000
+    private val SPLASH_DELAY: Long = 2000
     private val splashScope = CoroutineScope(Dispatchers.Main)
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -45,7 +48,6 @@ class SplashActivity : AppCompatActivity() {
         startActivity(mainIntent)
         finish()
     }
-
     override fun onDestroy() {
         splashScope.cancel()
         super.onDestroy()

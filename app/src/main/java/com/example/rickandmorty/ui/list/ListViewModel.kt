@@ -45,7 +45,6 @@ class ListViewModel @Inject constructor(private val repository: RickAndMortyRepo
     fun openCharactersDetail(details: Details) = viewModelScope.launch {
         taskEventChannel.send(TaskEvent.NavigateToDetailScreen(details))
     }
-
     sealed class TaskEvent {
         data class NavigateToDetailScreen(val details: Details) : TaskEvent()
     }
