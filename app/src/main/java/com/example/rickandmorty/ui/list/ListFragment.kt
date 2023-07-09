@@ -24,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list), RickAndMortyPagingAdapter.OnItemClickListener {
 
     private val binding by viewBinding(FragmentListBinding::bind)
+
     private lateinit var mAdapter: RickAndMortyPagingAdapter
     private val viewModel: ListViewModel by viewModels()
     private var filterButtonClicked: Boolean = false

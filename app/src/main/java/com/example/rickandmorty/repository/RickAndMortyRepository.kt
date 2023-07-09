@@ -1,19 +1,24 @@
 package com.example.rickandmorty.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.liveData
-import com.example.rickandmorty.data.remote.ApiService
-import com.example.rickandmorty.paging.RickAndMortyPagingSource
+
+import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
+import androidx.paging.map
+import com.example.rickandmorty.data.models.Details
 import javax.inject.Inject
 
-class RickAndMortyRepository @Inject constructor(private val apiService: ApiService) {
+class RickAndMortyRepository @Inject constructor(
+    private val localDataSource: RickMortyLocalDataSource,
+    private val remoteDataSource: RickMortyRemoteDataSource
+    ) {
 
-    fun getSearchResults(query: String, status: String) = Pager(config = PagingConfig(
-        pageSize = 20,
-        maxSize = 100,
-        enablePlaceholders = false
-    ),
-        pagingSourceFactory = { RickAndMortyPagingSource(apiService, query, status) }
-    ).liveData
+    suspend fun getSearchResults(query: String, status: String): LiveData<PagingData<Details>> {
+        val response = remoteDataSource.getSearchResults(query,status)
+        response.value?.let {
+            it.map {
+                localDataSource.insertProperties(it)
+            }
+        }
+        return response
+    }
 }

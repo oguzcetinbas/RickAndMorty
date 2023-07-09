@@ -2,10 +2,14 @@ package com.example.rickandmorty.data.models
 
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
+
 @Parcelize
+@Entity(tableName = "rickandmorty_details")
 data class Details(
     @SerializedName("created")
     val created: String,
@@ -14,6 +18,7 @@ data class Details(
     @SerializedName("gender")
     val gender: String,
     @SerializedName("id")
+    @PrimaryKey
     val id: Int,
     @SerializedName("image")
     val image: String,
