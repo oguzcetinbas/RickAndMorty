@@ -5,7 +5,7 @@ The Rick and Morty character search application is an Android mobile app that of
  
 </p>
 
-#  <h1 align="center">📚 Libraries and Tools Used </h1>
+#  <h1 align="center"> Libraries and Tools Used </h1>
 
 <p align="center">
 
@@ -20,7 +20,7 @@ The Rick and Morty character search application is an Android mobile app that of
 </p>
 
 
-<h2 align="center">Getting Started 🚀</h2>
+<h2 align="center">Getting Started </h2>
 
 To run this app, you'll need to have Android Studio installed. Follow these steps to get started:
 
